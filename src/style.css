@@ -1,3 +1,37 @@
-h1 {
-    color:pink;
+body{
+    font-family: 'Georama', sans-serif;
+}
+ul{
+        display: inline;
+        padding-top: 30px;
+}
+
+li{
+    list-style: none;
+    text-transform: capitalize;
+
+}
+
+.weather-app{
+    max-width: 600px;
+    margin: 30px auto;
+    border: 1px solid orange;
+    padding: 30px;
+    border-radius: 5px;
+}
+.sunny{
+    width: 60px;
+}
+.temp{
+    font-size: 40px;
+}
+.left{
+    float: left;
+}
+.weath-temp img{
+margin-right: 14px;
+}
+.cels{
+    margin-top: 10px;
+    margin-left:5px ;
 }
