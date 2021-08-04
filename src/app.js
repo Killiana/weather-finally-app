@@ -28,12 +28,15 @@ let minutes = now.getMinutes;
      document.querySelector("#description").innerHTML = response.data.weather[0].description;
      document.querySelector("#humidity").innerHTML = response.data.main.humidity;
      document.querySelector("#wind").innerHTML = Math.round(response.data.wind.speed);
+     document.querySelector("#icon").setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png` );
+
+     console.log(response.data)
      
  }
  
  
  
  let apiKey = "168e1d15822e79c675ec6a7c184689e9";
- let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=London&appid=${apiKey}&units=metric`;
+ let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Sofia&appid=${apiKey}&units=metric`;
 
  axios.get(apiUrl).then(showForecast);
