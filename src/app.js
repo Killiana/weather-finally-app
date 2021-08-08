@@ -22,11 +22,10 @@ let days = [
 document.querySelector("#day").innerHTML = days[now.getDay()];
 
 function showForecast(response) {
-  document.querySelector("#temper").innerHTML = Math.round(
-    response.data.main.temp
-  );
+  celsElement = Math.round(response.data.main.temp);
+  document.querySelector("#temper").innerHTML = Math.round(celsElement);
   document.querySelector("h1").innerHTML = response.data.name;
-
+  console.log(response.data);
   document.querySelector("#description").innerHTML =
     response.data.weather[0].description;
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
@@ -56,3 +55,25 @@ function findCity(event) {
 
 let searchElement = document.querySelector("#form");
 searchElement.addEventListener("submit", findCity);
+
+function findFahr(event) {
+  event.preventDefault();
+  let temp = document.querySelector("#temper");
+  let tempEl = Math.round((celsElement * 9) / 5 + 32);
+  temp.innerHTML = tempEl;
+  celsiusLink.classList.remove("active");
+  fahrLink.classList.add("active");
+}
+
+function findCels(event) {
+  event.preventDefault();
+  document.querySelector("#temper").innerHTML = celsElement;
+  celsiusLink.classList.add("active");
+  fahrLink.classList.remove("active");
+}
+let celsElement = null;
+let fahrLink = document.querySelector("#fahr-link");
+document.querySelector("#fahr-link").addEventListener("click", findFahr);
+let celsiusLink = document.querySelector("#cels-link");
+celsiusLink.addEventListener("click", findCels);
+search("New Orleans");
