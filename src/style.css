@@ -41,6 +41,13 @@ li {
 
   cursor: default;
 }
+.weather-forecast {
+  text-align: center;
+}
 .weath-temp .active:hover {
   text-decoration: none;
+}
+.forecast-temp {
+  color: orangered;
+  font-weight: bold;
 }
