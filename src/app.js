@@ -29,13 +29,12 @@ function formatDay(timestamp) {
 }
 
 function displayForecast(response) {
-  console.log(response.data.daily);
   let forecastData = response.data.daily;
   forecastElement = document.querySelector("#forecast");
   let forecast = `<div class="row">`;
   let days = ["Sun", "Mon", "Tue", "Wed", "Fri"];
   forecastData.forEach(function (forecastDay, index) {
-    if (index < 6) {
+    if (index < 5) {
       forecast =
         forecast +
         ` <div class="col-2">
@@ -47,9 +46,11 @@ function displayForecast(response) {
             }@2x.png" alt="">
             <div class="forecast-temp">
             
-              <span class="forecast-max">  ${forecastDay.temp.max}
+              <span class="forecast-max">  ${Math.round(forecastDay.temp.max)}º
                   </span>
-                <span class="forecast-min">   ${forecastDay.temp.min}</span>
+                <span class="forecast-min">   ${Math.round(
+                  forecastDay.temp.min
+                )}º</span>
 </div>
         </div>`;
     }
@@ -60,10 +61,9 @@ function displayForecast(response) {
 }
 
 function getForecast(coordinates) {
-  console.log(coordinates);
   let apiKey = `168e1d15822e79c675ec6a7c184689e9`;
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
-  console.log(apiUrl);
+
   axios.get(apiUrl).then(displayForecast);
 }
 
@@ -104,24 +104,4 @@ function findCity(event) {
 let searchElement = document.querySelector("#form");
 searchElement.addEventListener("submit", findCity);
 
-function findFahr(event) {
-  event.preventDefault();
-  let temp = document.querySelector("#temper");
-  let tempEl = Math.round((celsElement * 9) / 5 + 32);
-  temp.innerHTML = tempEl;
-  celsiusLink.classList.remove("active");
-  fahrLink.classList.add("active");
-}
-
-function findCels(event) {
-  event.preventDefault();
-  document.querySelector("#temper").innerHTML = celsElement;
-  celsiusLink.classList.add("active");
-  fahrLink.classList.remove("active");
-}
-let celsElement = null;
-let fahrLink = document.querySelector("#fahr-link");
-document.querySelector("#fahr-link").addEventListener("click", findFahr);
-let celsiusLink = document.querySelector("#cels-link");
-celsiusLink.addEventListener("click", findCels);
-search("New Orleans");
+search("London");
